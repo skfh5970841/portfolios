@@ -1,0 +1,19 @@
+{
+  "name": "word_chain",
+  "version": "1.0.0",
+  "description": "word_chain api-server and front react server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skfh5970841/word-chain.git"
+  },
+  "author": "Shiki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skfh5970841/word-chain/issues"
+  },
+  "homepage": "https://github.com/skfh5970841/word-chain#readme"
+}
