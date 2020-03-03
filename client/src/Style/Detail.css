@@ -1,0 +1,24 @@
+.center {
+  padding: 150px 0px;
+}
+
+.detail_box {
+  position: relative;
+  height: auto;
+  width: 50%;
+  margin: 0 auto;
+  border: 5px solid #dddddd;
+  padding: 10px;
+}
+
+.imgbox {
+  position: relative;
+  margin: auto;
+  height: 40vh;
+  width: 40vw;
+}
+
+.indeximg {
+  height: 100%;
+  width: 100%;
+}

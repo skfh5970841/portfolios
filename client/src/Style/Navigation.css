@@ -1,0 +1,21 @@
+body {
+  font-family: "Open Sans";
+}
+
+.navigation {
+  margin: auto;
+  margin-left: 15px;
+  width: 220px;
+  border: 3px solid burlywood;
+  padding: 10px;
+}
+
+.logoutbutton {
+  margin-left: 0;
+  padding-left: 0;
+  width: 50px;
+  outline: none;
+  border: none;
+  background-color: white;
+  font-size: 15px;
+}

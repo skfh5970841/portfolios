@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  background-color: ivory;
+}
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+.image {
+  position: relative;
+  float: left;
+}
+
+.image .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.backgroundimg {
+  width: 100vw;
+  height: 50vh;
+}

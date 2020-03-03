@@ -1,14 +1,16 @@
 {
-  "name": "word_chain",
+  "name": "portfolio",
   "version": "1.0.0",
-  "description": "word_chain api-server and front react server",
+  "description": "portfolio api-server and front react server",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "nodemon server.js --exec babel-node"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skfh5970841/word-chain.git"
+    "url": "git+https://github.com/skfh5970841/portfolio.git"
   },
   "author": "Shiki",
   "license": "ISC",
@@ -18,9 +20,20 @@
   "homepage": "https://github.com/skfh5970841/word-chain#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-mysql-session": "^2.1.3",
     "express-session": "^1.17.0",
+    "http-status-codes": "^1.4.0",
+    "mysql": "^2.18.1",
     "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.6",
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2"
   }
 }

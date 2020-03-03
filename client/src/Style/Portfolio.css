@@ -1,0 +1,25 @@
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.portfolio {
+  margin: 15px;
+  border: 3px solid burlywood;
+  padding: 30px;
+}
+
+.portimg {
+  padding-left: 2vw;
+  margin: auto;
+  width: 90vw;
+  height: 45vw;
+}

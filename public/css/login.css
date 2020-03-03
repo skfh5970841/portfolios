@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  background: linear-gradient(to right, #95afc0, #535c68);
+}
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+input[type="text"],
+textarea {
+  border: none;
+  background-color: #ecf0f1;
+}
+input[type="text"] {
+  margin-left: 1vw;
+  width: 18vw;
+}
+button {
+  border: none;
+  margin-left: 1vw;
+  width: 18vw;
+}
+.loginbox {
+  margin-top: 35vh;
+}
+
+.loginform {
+  box-shadow: 5px 5px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 33vh;
+  width: 20vw;
+  margin: 0 auto;
+  border: 3px solid gainsboro;
+  padding: 10px;
+  background-color: #dff9fb;
+}

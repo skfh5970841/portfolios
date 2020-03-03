@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+}
+.editbox {
+  margin: auto;
+  margin-top: 25vh;
+  width: 30vw;
+  height: 40vh;
+  padding: 50px;
+  border: 1px solid turquoise;
+}
+.image_url {
+  margin-left: 2vw;
+  width: 26vw;
+}
+
+.name {
+  margin-left: 2vw;
+  width: 26vw;
+}
+
+.content {
+  margin-left: 2vw;
+  width: 26vw;
+  height: 30vh;
+}
