@@ -7,6 +7,7 @@ import Detail from "./routes/Detail";
 import Index from "./routes/Index";
 import Edit from "./routes/Edit";
 import AddData from "./routes/AddData";
+import Test from "./routes/Test";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/data-details/:id" exact={true} component={Detail} />
       <Route path="/edit-data/:id" component={Edit} />
       <Route path="/add-data/" component={AddData} />
+      <Route path="/test" component={Test} />
     </HashRouter>
   );
 }

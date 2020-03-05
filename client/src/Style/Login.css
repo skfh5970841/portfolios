@@ -1,19 +1,70 @@
-.detail_box {
-  width: 360px;
-  padding: 18% 0 0;
-  margin: auto;
+body {
+  margin: 0;
+  background: linear-gradient(to right, #95afc0, #535c68);
 }
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+input[type="text"],
+input[type="password"],
+textarea {
+  border-radius: 10px;
+  background-color: honeydew;
+}
+input[type="text"],
+input[type="password"] {
+  width: 350px;
+}
+.loginbutton {
+  border: none;
+  width: 350px;
+  margin-bottom: 5px;
+  margin-top: 40px;
+  border-radius: 5px;
+  height: 30px;
+  background-color: cornflowerblue;
+}
+
+.sectionbox {
+  margin-top: 20vh;
+}
+
 .formbox {
-  position: relative;
-  z-index: 1;
-  background: #ffffff;
+  margin: auto;
+  margin-top: 20vh;
   max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 45px;
+  padding: 3%;
+  padding-top: 5%;
+  padding-bottom: 7%;
   text-align: center;
+  background-color: darkgray;
+  border-radius: 15px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-button {
-  width: 30%;
-  height: auto;
+
+.username {
+  width: auto;
+  height: 3vh;
+}
+
+.password {
+  width: auto;
+  height: 3vh;
+}
+
+.usernamediv {
+  margin-bottom: 3vh;
+}
+.loginicon {
+  height: 100px;
+  width: 100px;
 }

@@ -1,22 +1,25 @@
 import React from "react";
 import axios from "axios";
+import ImageUploader from "react-images-upload";
 
 class AddData extends React.Component {
   state = {
     isLogined: true,
     addImgurl: "",
     addName: "",
-    addContent: ""
+    addContent: "",
+    addImage: ""
   };
 
   addData = async () => {
     const { history } = this.props;
-    const { addImgurl, addName, addContent } = this.state;
-    console.log(addImgurl, addName, addContent);
+    const { addImgurl, addName, addContent, addImage } = this.state;
+    console.log(addImgurl, addName, addContent, addImage);
     const addData = await axios.post("http://localhost:8888/api/adddata", {
       addImgurl,
       addName,
-      addContent
+      addContent,
+      addImage
     });
     console.log(addData);
     if (addData.data === "success") {
@@ -50,10 +53,24 @@ class AddData extends React.Component {
   handleCompleteButton = e => {
     this.addData();
   };
+
+  onDrop = (pictureFiles, pictureDataURLs) => {
+    this.setState({
+      addImage: this.state.addImage.concat(pictureFiles)
+    });
+  };
+
   render() {
     return (
       <session>
         <div className="editbox">
+          <ImageUploader
+            withIcon={false}
+            buttonText="Choose images"
+            onChange={this.onDrop}
+            imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+            maxFileSize={5242880}
+          />
           <input
             type="text"
             placeholder="image url"
@@ -62,6 +79,7 @@ class AddData extends React.Component {
             onChange={this.handleImgUrl}
             value={this.state.editImageurl}
           />
+
           <input
             type="text"
             placeholder="name"

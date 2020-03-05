@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-import Data from "./Data";
 import { Redirect } from "react-router-dom";
+import "../Style/Login.css";
+import loginicon from "../icon/loginlogo.svg";
 
 class Login extends React.Component {
   state = {
@@ -47,30 +48,34 @@ class Login extends React.Component {
   render(props) {
     const { isLogined } = this.state;
     return (
-      <section class="container">
+      <section className="loginbox">
         {isLogined ? (
-          <div>
-            <div className="input-field col s12 username">
-              <label>Username</label>
+          <div className="formbox">
+            <h4>Login for Edit or Add Portfolio</h4>
+            <img src={loginicon} className="loginicon" />
+            <div className="usernamediv">
               <input
+                placeholder="Username"
                 name="username"
                 type="text"
-                className="validate"
+                className="username"
                 onChange={this.handleUserName}
                 value={this.state.username}
               />
             </div>
-            <div className="input-field col s12">
-              <label>Password</label>
+            <div className="passworddiv">
               <input
+                placeholder="Password"
                 name="password"
                 type="password"
-                className="validate"
+                className="password"
                 onChange={this.handlePassword}
                 value={this.state.password}
               />
             </div>
-            <button onClick={this.handleEnter}>Login</button>
+            <button className="loginbutton" onClick={this.handleEnter}>
+              Login
+            </button>
           </div>
         ) : (
           <Redirect to="/data"></Redirect>
