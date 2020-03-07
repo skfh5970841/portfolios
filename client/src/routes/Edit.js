@@ -1,15 +1,19 @@
 import React from "react";
 import "../Style/Edit.css";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class Edit extends React.Component {
-  state = {
-    isLogined: true,
-    id: 0,
-    editImageurl: "",
-    editName: "",
-    editContent: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogined: localStorage.getItem("isLogined"),
+      id: 0,
+      editImageurl: "",
+      editName: "",
+      editContent: ""
+    };
+  }
 
   editData = async () => {
     const { history } = this.props;
@@ -30,6 +34,8 @@ class Edit extends React.Component {
 
   componentDidMount() {
     const { location, history } = this.props;
+    if (this.state.isLogined === true) history.push("/login");
+
     if (location.states === undefined) {
       history.push("/");
     } else {
@@ -61,7 +67,8 @@ class Edit extends React.Component {
 
   render() {
     const { location } = this.props;
-    console.log(location.states);
+    const { isLogined } = this.state;
+
     return (
       <session>
         <div className="editbox">

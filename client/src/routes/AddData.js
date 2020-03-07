@@ -1,15 +1,19 @@
 import React from "react";
 import axios from "axios";
 import ImageUploader from "react-images-upload";
+import { Redirect } from "react-router-dom";
 
 class AddData extends React.Component {
-  state = {
-    isLogined: true,
-    addImgurl: "",
-    addName: "",
-    addContent: "",
-    addImage: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogined: localStorage.getItem("isLogined"),
+      addImgurl: "",
+      addName: "",
+      addContent: "",
+      addImage: ""
+    };
+  }
 
   addData = async () => {
     const { history } = this.props;
@@ -30,9 +34,7 @@ class AddData extends React.Component {
 
   componentDidMount() {
     const { location, history } = this.props;
-    this.setState({
-      isLogined: localStorage.getItem("isLogined")
-    });
+    console.log(this.state.isLogined);
   }
 
   handleImgUrl = e => {
@@ -61,43 +63,51 @@ class AddData extends React.Component {
   };
 
   render() {
+    const { isLogined } = this.state;
+    console.log(isLogined);
     return (
       <session>
-        <div className="editbox">
-          <ImageUploader
-            withIcon={false}
-            buttonText="Choose images"
-            onChange={this.onDrop}
-            imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-            maxFileSize={5242880}
-          />
-          <input
-            type="text"
-            placeholder="image url"
-            className="image_url"
-            name="image_url"
-            onChange={this.handleImgUrl}
-            value={this.state.editImageurl}
-          />
+        {isLogined ? (
+          <Redirect to="login" />
+        ) : (
+          <div className="editbox">
+            <ImageUploader
+              withIcon={false}
+              buttonText="Choose images"
+              onChange={this.onDrop}
+              imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+              maxFileSize={5242880}
+            />
+            <input
+              type="text"
+              placeholder="image url"
+              className="image_url"
+              name="image_url"
+              onChange={this.handleImgUrl}
+              value={this.state.editImageurl}
+            />
 
-          <input
-            type="text"
-            placeholder="name"
-            className="name"
-            name="name"
-            onChange={this.handleName}
-            value={this.state.editName}
-          />
-          <input
-            type="text"
-            placeholder="content"
-            className="content"
-            name="content"
-            onChange={this.handleContent}
-            value={this.state.editContent}
-          />
-          <button onClick={this.handleCompleteButton}>Add Potfolio Data</button>
-        </div>
+            <input
+              type="text"
+              placeholder="name"
+              className="name"
+              name="name"
+              onChange={this.handleName}
+              value={this.state.editName}
+            />
+            <input
+              type="text"
+              placeholder="content"
+              className="content"
+              name="content"
+              onChange={this.handleContent}
+              value={this.state.editContent}
+            />
+            <button onClick={this.handleCompleteButton}>
+              Add Potfolio Data
+            </button>
+          </div>
+        )}
       </session>
     );
   }

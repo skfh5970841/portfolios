@@ -52,7 +52,7 @@ class Login extends React.Component {
         {isLogined ? (
           <div className="formbox">
             <h4>Login for Edit or Add Portfolio</h4>
-            <img src={loginicon} className="loginicon" />
+            <img src={loginicon} className="loginicon" alt="defalt" />
             <div className="usernamediv">
               <input
                 placeholder="Username"
