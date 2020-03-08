@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 const mysql = require("mysql");
-const dbconfig = require("../dbconfig");
+const dbconfig = require("../dbconfig.js");
 const connection = mysql.createConnection(dbconfig);
 const cors = require("cors");
 

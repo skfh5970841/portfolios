@@ -1,9 +1,11 @@
+import dotenv from "dotenv";
+dotenv.config();
 const config = {
-  host: "us-cdbr-iron-east-04.cleardb.net",
-  port: 3306,
-  user: "b0a664735828ff",
-  password: "cbeec343",
-  database: "heroku_741243f1614cf63"
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 };
 
 module.exports = config;
