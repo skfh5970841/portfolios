@@ -3,7 +3,7 @@ import { HashRouter, Route, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../Style/Portfolio.css";
 
-function Portfolio({ id, name, img_url, content }) {
+function Portfolio({ id, name, img_url, content, isLogined }) {
   return (
     <Link
       to={{
@@ -12,11 +12,12 @@ function Portfolio({ id, name, img_url, content }) {
           id,
           name,
           img_url,
-          content
+          content,
+          isLogined
         }
       }}
     >
-      <session>
+      <section>
         <div className="portfolio">
           <h4>{id}</h4>
           <img src={img_url} alt={name} className="portimg" />
@@ -24,7 +25,7 @@ function Portfolio({ id, name, img_url, content }) {
           <h4>{content}</h4>
         </div>
         <br />
-      </session>
+      </section>
     </Link>
   );
 }

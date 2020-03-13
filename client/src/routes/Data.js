@@ -8,28 +8,36 @@ import Portfolio from "../Components/Portfolio";
 class Data extends React.Component {
   state = {
     isLoading: true,
-    data: []
+    data: [],
+    isLogined: true
   };
   getUserData = async () => {
     const data = await axios.get("http://localhost:8888/api/data");
     this.setState({ data, isLoading: false });
   };
+  
   async componentDidMount() {
+    const {location, history} = this.props;
+    if(location.states !== undefined)
+    {
+      console.log(location.states.isLogined);
+      this.setState({isLogined : location.states.isLogined});
+    }
     this.getUserData();
   }
 
   render() {
     const {
       data: { data },
-      isLoading
+      isLoading, 
+      isLogined
     } = this.state;
     if (data === undefined) {
       console.log("undefined");
       return <div>Please Wait until data is reached!</div>;
     }
-    console.dir(data[0].id);
     return (
-      <section class="container">
+      <section className="container">
         {isLoading ? (
           <div className="loading">Loading</div>
         ) : (
@@ -40,6 +48,7 @@ class Data extends React.Component {
               name={data.name}
               img_url={data.image_url}
               content={data.content}
+              isLogined={isLogined}
             />
           ))
         )}

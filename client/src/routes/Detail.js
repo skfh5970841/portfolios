@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 class Detail extends React.Component {
   state = {
-    isEditButton: false
+    isEditButton: false,
+    isLogined: true
   };
   componentDidMount() {
     const { location, history } = this.props;
@@ -17,6 +18,7 @@ class Detail extends React.Component {
 
     if (location.states) {
       const url = `/edit-data/${location.states.id}`;
+      const isLogined = location.states.isLogined;
       console.log(location.states.img_url);
       return (
         <div className="center">
@@ -39,19 +41,21 @@ class Detail extends React.Component {
             <span>
               <h5>{location.states.content}</h5>
             </span>
-            <Link
+            {isLogined? "" : <Link
               to={{
                 pathname: url,
                 states: {
                   id: location.states.id,
                   img_url: location.states.img_url,
                   name: location.states.name,
-                  content: location.states.content
+                  content: location.states.content,
+                  isLogined: location.states.isLogined
                 }
               }}
             >
               Edit
-            </Link>
+            </Link>}
+            
           </section>
         </div>
       );

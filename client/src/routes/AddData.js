@@ -32,8 +32,14 @@ class AddData extends React.Component {
     }
   };
 
+  getLoginData = async () => {
+    const isLogined = await localStorage.getItem("isLogined");
+    this.setState({ isLogined: isLogined });
+  };
+
   componentDidMount() {
     const { location, history } = this.props;
+    this.getLoginData();
     console.log(this.state.isLogined);
   }
 

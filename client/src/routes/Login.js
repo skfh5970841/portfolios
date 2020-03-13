@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import "../Style/Login.css";
 import loginicon from "../icon/loginlogo.svg";
 
+
 class Login extends React.Component {
   state = {
     isLogined: true,
@@ -51,34 +52,38 @@ class Login extends React.Component {
       <section className="loginbox">
         {isLogined ? (
           <div className="formbox">
-            <h4>Login for Edit or Add Portfolio</h4>
-            <img src={loginicon} className="loginicon" alt="defalt" />
-            <div className="usernamediv">
-              <input
-                placeholder="Username"
-                name="username"
-                type="text"
-                className="username"
-                onChange={this.handleUserName}
-                value={this.state.username}
-              />
-            </div>
-            <div className="passworddiv">
-              <input
-                placeholder="Password"
-                name="password"
-                type="password"
-                className="password"
-                onChange={this.handlePassword}
-                value={this.state.password}
-              />
-            </div>
-            <button className="loginbutton" onClick={this.handleEnter}>
-              Login
-            </button>
+          <h4>Login for Edit or Add Portfolio</h4>
+          <img src={loginicon} className="loginicon" alt="defalt" />
+          <div className="usernamediv">
+            <input
+              placeholder="Username"
+              name="username"
+              type="text"
+              className="username"
+              onChange={this.handleUserName}
+              value={this.state.username}
+            />
           </div>
+          <div className="passworddiv">
+            <input
+              placeholder="Password"
+              name="password"
+              type="password"
+              className="password"
+              onChange={this.handlePassword}
+              value={this.state.password}
+            />
+          </div>
+          <button className="loginbutton" onClick={this.handleEnter}>
+            Login
+          </button>
+        </div>
         ) : (
-          <Redirect to="/data"></Redirect>
+          <Redirect to={{
+            pathname: "/data",
+            states: { isLogined: isLogined }
+          }}></Redirect>
+          
         )}
       </section>
     );

@@ -7,7 +7,7 @@ class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogined: localStorage.getItem("isLogined"),
+      isLogined: true,
       id: 0,
       editImageurl: "",
       editName: "",
@@ -32,15 +32,22 @@ class Edit extends React.Component {
     }
   };
 
+  getLoginData = async () => {
+    const isLogined = await localStorage.getItem("isLogined");
+    return isLogined;
+  };
+
   componentDidMount() {
     const { location, history } = this.props;
-    if (this.state.isLogined === true) history.push("/login");
-
+    const isLogined = this.getLoginData();
+    if (isLogined === true) history.push("/login");
+    this.setState({
+      isLogined: isLogined
+    });
     if (location.states === undefined) {
       history.push("/");
     } else {
       this.setState({
-        isLogined: localStorage.getItem("isLogined"),
         id: location.states.id
       });
     }
@@ -68,36 +75,39 @@ class Edit extends React.Component {
   render() {
     const { location } = this.props;
     const { isLogined } = this.state;
-
     return (
       <session>
-        <div className="editbox">
-          <input
-            type="text"
-            placeholder="image url"
-            className="image_url"
-            name="image_url"
-            onChange={this.handleImgUrl}
-            value={this.state.editImageurl}
-          />
-          <input
-            type="text"
-            placeholder="name"
-            className="name"
-            name="name"
-            onChange={this.handleName}
-            value={this.state.editName}
-          />
-          <input
-            type="text"
-            placeholder="content"
-            className="content"
-            name="content"
-            onChange={this.handleContent}
-            value={this.state.editContent}
-          />
-          <button onClick={this.handleCompleteButton}>Complet</button>
-        </div>
+        {false ? (
+          <div>Please Login to Edit data</div>
+        ) : (
+          <div className="editbox">
+            <input
+              type="text"
+              placeholder="image url"
+              className="image_url"
+              name="image_url"
+              onChange={this.handleImgUrl}
+              value={this.state.editImageurl}
+            />
+            <input
+              type="text"
+              placeholder="name"
+              className="name"
+              name="name"
+              onChange={this.handleName}
+              value={this.state.editName}
+            />
+            <input
+              type="text"
+              placeholder="content"
+              className="content"
+              name="content"
+              onChange={this.handleContent}
+              value={this.state.editContent}
+            />
+            <button onClick={this.handleCompleteButton}>Complet</button>
+          </div>
+        )}
       </session>
     );
   }
