@@ -7,7 +7,7 @@ class AddData extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogined: localStorage.getItem("isLogined"),
+      isLogined: true,
       addImgurl: "",
       addName: "",
       addContent: "",
