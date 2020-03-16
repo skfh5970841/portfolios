@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import "../Style/Login.css";
 import loginicon from "../icon/loginlogo.svg";
 
-
 class Login extends React.Component {
   state = {
     isLogined: true,

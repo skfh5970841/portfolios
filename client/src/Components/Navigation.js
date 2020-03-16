@@ -13,8 +13,6 @@ function Navigation() {
       <span> </span>
       <Link to="/data">Data</Link>
       <span> </span>
-      <Link to="/add-data">Add</Link>
-      <span> </span>
       <Link to="/login">Login</Link>
       <span> </span>
       <button className="logoutbutton" onClick={clicked}>

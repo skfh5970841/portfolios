@@ -10,17 +10,20 @@ import AddData from "./routes/AddData";
 import Test from "./routes/Test";
 
 function App() {
+  let data = {
+    isLogined : true
+  };
   return (
-    <HashRouter>
-      <Navigation />
-      <Route path="/" exact={true} component={Index} />
-      <Route path="/login" component={Login} />
-      <Route path="/data" exact={true} component={Data} />
-      <Route path="/data-details/:id" exact={true} component={Detail} />
-      <Route path="/edit-data/:id" component={Edit} />
-      <Route path="/add-data/" component={AddData} />
-      <Route path="/test" component={Test} />
-    </HashRouter>
+      <HashRouter>
+        <Navigation />
+        <Route path="/" exact={true} component={Index} />
+        <Route path="/login" component={Login} />
+        <Route path="/data" exact={true} component={Data} />
+        <Route path="/data-details/:id" exact={true} component={Detail} />
+        <Route path="/edit-data/:id" component={Edit} />
+        <Route path="/add-data/" component={AddData} />
+        <Route path="/test" component={Test} />
+      </HashRouter>
   );
 }
 

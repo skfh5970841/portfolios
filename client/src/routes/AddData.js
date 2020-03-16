@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import ImageUploader from "react-images-upload";
 import { Redirect } from "react-router-dom";
 
 class AddData extends React.Component {
@@ -62,28 +61,16 @@ class AddData extends React.Component {
     this.addData();
   };
 
-  onDrop = (pictureFiles, pictureDataURLs) => {
-    this.setState({
-      addImage: this.state.addImage.concat(pictureFiles)
-    });
-  };
-
   render() {
-    const { isLogined } = this.state;
+    const { location:{states : {isLogined} } } = this.props;
     console.log(isLogined);
     return (
-      <session>
-        {isLogined ? (
+      <div className="adddata">
+        {     
+        isLogined ? (
           <Redirect to="login" />
         ) : (
           <div className="editbox">
-            <ImageUploader
-              withIcon={false}
-              buttonText="Choose images"
-              onChange={this.onDrop}
-              imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-              maxFileSize={5242880}
-            />
             <input
               type="text"
               placeholder="image url"
@@ -114,7 +101,7 @@ class AddData extends React.Component {
             </button>
           </div>
         )}
-      </session>
+      </div>
     );
   }
 }

@@ -4,6 +4,7 @@ import axios from "axios";
 import "../Style/Login.css";
 import { json } from "body-parser";
 import Portfolio from "../Components/Portfolio";
+import { HashRouter, Link } from "react-router-dom";
 
 class Data extends React.Component {
   state = {
@@ -52,6 +53,11 @@ class Data extends React.Component {
             />
           ))
         )}
+        <Link to={{
+          pathname: "/add-data",
+          states : {isLogined}
+      }}>Add data</Link>
+        <h1></h1>
       </section>
     );
   }
