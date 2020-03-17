@@ -65,6 +65,7 @@ class Edit extends React.Component {
 
   handleContent = e => {
     var editContent = e.target.value;
+    console.log("handlecontent func");
     this.setState({ editContent: editContent });
   };
 
@@ -75,10 +76,11 @@ class Edit extends React.Component {
   render() {
     const { location } = this.props;
     const { isLogined } = this.state;
+    console.log(isLogined);
     return (
-      <session>
-        {false ? (
-          <div>Please Login to Edit data</div>
+      <div>
+        {isLogined ? (
+          <div>login to edit data</div>
         ) : (
           <div className="editbox">
             <input
@@ -108,7 +110,7 @@ class Edit extends React.Component {
             <button onClick={this.handleCompleteButton}>Complet</button>
           </div>
         )}
-      </session>
+      </div>
     );
   }
 }

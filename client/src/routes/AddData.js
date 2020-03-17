@@ -36,10 +36,10 @@ class AddData extends React.Component {
     this.setState({ isLogined: isLogined });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { location, history } = this.props;
+    this.setState({isLogined: localStorage.getItem("isLogined")});
     this.getLoginData();
-    console.log(this.state.isLogined);
   }
 
   handleImgUrl = e => {
