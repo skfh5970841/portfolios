@@ -1,27 +1,15 @@
 import React from "react";
 import "../Style/Detail.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+function Detail(props){    
+  const { location } = props;
+  const isLogined = props.isLogined;
+  
 
-class Detail extends React.Component {
-  state = {
-    isEditButton: false,
-    isLogined: true
-  };
-  componentDidMount() {
-    const { location, history } = this.props;
-    if (location.states === undefined) {
-      history.push("/");
-    }
-  }
-  render() {
-    const { location } = this.props;
-
-    if (location.states) {
-      const url = `/edit-data/${location.states.id}`;
-      const isLogined = location.states.isLogined;
-      console.log(location.states.img_url);
-      return (
-        <div className="center">
+  return (
+    <>
+    {location.states ? <div className="center">
           <section className="detail_box">
             <span>
               <h3>{location.states.id}</h3>
@@ -41,28 +29,28 @@ class Detail extends React.Component {
             <span>
               <h5>{location.states.content}</h5>
             </span>
-            {isLogined? "" : <Link
+            {isLogined? <Link
               to={{
-                pathname: url,
+                pathname: `/edit-data/${location.states.id}`,
                 states: {
                   id: location.states.id,
                   img_url: location.states.img_url,
                   name: location.states.name,
                   content: location.states.content,
-                  isLogined: location.states.isLogined
                 }
               }}
             >
               Edit
-            </Link>}
-            
+            </Link> : ""}
           </section>
-        </div>
-      );
-    } else {
-      return null;
-    }
-  }
+        </div> 
+        : <Redirect to="/"/>}
+        </>
+  );
+}
+function mapStateToProps(state, ownProps) {
+  console.log(state);
+  return { isLogined : state };
 }
 
-export default Detail;
+export default connect(mapStateToProps, null)(Detail);

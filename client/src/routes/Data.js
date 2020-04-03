@@ -1,16 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
 import "../Style/Login.css";
-import { json } from "body-parser";
 import Portfolio from "../Components/Portfolio";
-import { HashRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Data extends React.Component {
   state = {
     isLoading: true,
     data: [],
-    isLogined: true
+    
   };
   getUserData = async () => {
     const data = await axios.get("http://localhost:8888/api/data");
@@ -18,11 +16,10 @@ class Data extends React.Component {
   };
   
   async componentDidMount() {
-    const {location, history} = this.props;
+    const {location} = this.props;
     if(location.states !== undefined)
     {
-      console.log(location.states.isLogined);
-      this.setState({isLogined : location.states.isLogined});
+      
     }
     this.getUserData();
   }
@@ -31,10 +28,8 @@ class Data extends React.Component {
     const {
       data: { data },
       isLoading, 
-      isLogined
     } = this.state;
     if (data === undefined) {
-      console.log("undefined");
       return <div>Please Wait until data is reached!</div>;
     }
     return (
@@ -49,13 +44,13 @@ class Data extends React.Component {
               name={data.name}
               img_url={data.image_url}
               content={data.content}
-              isLogined={isLogined}
+              //isLogined={isLogined}
             />
           ))
         )}
         <Link to={{
           pathname: "/add-data",
-          states : {isLogined}
+//          states : {isLogined}
       }}>Add data</Link>
         <h1></h1>
       </section>

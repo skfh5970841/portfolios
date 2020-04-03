@@ -42,6 +42,7 @@ router.post("/api/login/", (req, res) => {
         failed: "error ocurred"
       });
     } else {
+      console.log(results);
       if (results === undefined) {
         res.status(HTTPStatus.OK).send("id_fail");
       } else {

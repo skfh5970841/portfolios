@@ -1,109 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-class AddData extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogined: true,
-      addImgurl: "",
-      addName: "",
-      addContent: "",
-      addImage: ""
-    };
+const useImgUrlInput = (initialValue, validator) =>{
+  const [imgUrl, setimgUrl] = useState(initialValue);
+  const onChange = (event) =>{
+    const {
+      target : {
+        value
+      }
+    } = event;
+    setimgUrl(value);
   }
-
-  addData = async () => {
-    const { history } = this.props;
-    const { addImgurl, addName, addContent, addImage } = this.state;
-    console.log(addImgurl, addName, addContent, addImage);
-    const addData = await axios.post("http://localhost:8888/api/adddata", {
-      addImgurl,
-      addName,
-      addContent,
-      addImage
-    });
-    console.log(addData);
-    if (addData.data === "success") {
-      console.log("addData");
-      history.push("/");
-    }
-  };
-
-  getLoginData = async () => {
-    const isLogined = await localStorage.getItem("isLogined");
-    this.setState({ isLogined: isLogined });
-  };
-
-  async componentDidMount() {
-    const { location, history } = this.props;
-    this.setState({isLogined: localStorage.getItem("isLogined")});
-    this.getLoginData();
+  return {imgUrl, onChange};
+}
+const useNameInput = (initialValue, validator) =>{
+  const [name, setname] = useState(initialValue);
+  const onChange = (event) =>{
+    const {
+      target : {
+        value
+      }
+    } = event;
+    setname(value);
   }
-
-  handleImgUrl = e => {
-    var addImgurl = e.target.value;
-    this.setState({ addImgurl: addImgurl });
-  };
-
-  handleName = e => {
-    var addName = e.target.value;
-    this.setState({ addName: addName });
-  };
-
-  handleContent = e => {
-    var addContent = e.target.value;
-    this.setState({ addContent: addContent });
-  };
-
-  handleCompleteButton = e => {
-    this.addData();
-  };
-
-  render() {
-    const { location:{states : {isLogined} } } = this.props;
-    console.log(isLogined);
-    return (
-      <div className="adddata">
-        {     
-        isLogined ? (
-          <Redirect to="login" />
-        ) : (
-          <div className="editbox">
-            <input
-              type="text"
-              placeholder="image url"
-              className="image_url"
-              name="image_url"
-              onChange={this.handleImgUrl}
-              value={this.state.editImageurl}
-            />
-
-            <input
-              type="text"
-              placeholder="name"
-              className="name"
-              name="name"
-              onChange={this.handleName}
-              value={this.state.editName}
-            />
-            <input
-              type="text"
-              placeholder="content"
-              className="content"
-              name="content"
-              onChange={this.handleContent}
-              value={this.state.editContent}
-            />
-            <button onClick={this.handleCompleteButton}>
-              Add Potfolio Data
-            </button>
-          </div>
-        )}
-      </div>
-    );
-  }
+  return {name, onChange};
 }
 
-export default AddData;
+const useContentInput = (initialValue, validator) =>{
+  const [content, setcontent] = useState(initialValue);
+  const onChange = (event) =>{
+    const {
+      target : {
+        value
+      }
+    } = event;
+    setcontent(value);
+  }
+  return {content, onChange};
+}
+const addData = async (imgUrl, name, content, props) => {
+  const { history } = props;
+  
+  const addData = await axios.post("http://localhost:8888/api/adddata", {
+    addImgurl: imgUrl,
+    addName: name,
+    addContent: content,
+  });
+  console.log(addData);
+  if (addData.data === "success") {
+    console.log("addData");
+    history.push("/data");
+  }
+};
+function AddData(props){
+  //const {location} = props;
+  const imgUrl = useImgUrlInput("");
+  const name = useNameInput("");
+  const content = useContentInput("");
+  const {isLogined} = props;
+
+  return (
+    <>
+    {isLogined 
+    ? <div className="editbox">
+      <input
+        type="text"
+        placeholder="image url"
+        className="image_url"
+        name="image_url"
+        {...imgUrl}
+      />
+
+      <input
+        type="text"
+        placeholder="name"
+        className="name"
+        name="name"
+        {...name}
+      />
+      <input
+        type="text"
+        placeholder="content"
+        className="content"
+        name="content"
+        {...content}
+      />
+      <button onClick={() => addData(imgUrl.imgUrl, name.name, content.content, props)}>
+        Add Potfolio Data
+      </button>
+  </div> 
+    : <Redirect to="/data"/>}
+    </>
+  );
+}
+
+function mapStateToProps(state, ownProps) {
+  return { isLogined : state };
+}
+
+export default connect(mapStateToProps, null)(AddData);
