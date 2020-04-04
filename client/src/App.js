@@ -9,6 +9,7 @@ import Edit from "./routes/Edit";
 import AddData from "./routes/AddData";
 import { actionCreators } from "./store";
 import { connect } from "react-redux";
+import Delete from "./routes/Delete";
 
 const App = ({login}) => {
   useEffect(()=>{
@@ -23,6 +24,7 @@ const App = ({login}) => {
         <Route path="/data-details/:id" exact={true} component={Detail} />
         <Route path="/edit-data/:id" component={Edit} />
         <Route path="/add-data/" component={AddData} />
+        <Route path="/delete/:id" component={Delete}/>
       </HashRouter>
   );
 }

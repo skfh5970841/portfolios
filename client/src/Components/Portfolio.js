@@ -19,7 +19,6 @@ function Portfolio({ id, name, img_url, content, isLogined }) {
     >
       <section>
         <div className="portfolio">
-          <h4>{id}</h4>
           <img src={img_url} alt={name} className="portimg" />
           <h4>{name}</h4>
           <h4>{content}</h4>

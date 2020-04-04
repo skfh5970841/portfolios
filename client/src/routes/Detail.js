@@ -2,17 +2,29 @@ import React from "react";
 import "../Style/Detail.css";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import axios from "axios";
+
+const deleteData = async (id, props) => {
+  const { history } = props;
+  
+  const editData = await axios.post("http://localhost:8888/api/delete", {
+    id
+  });
+  if (editData.data === "success") {
+    console.log("success");
+    history.push("/data");
+  }
+};
+
 function Detail(props){    
   const { location } = props;
   const isLogined = props.isLogined;
   
-
   return (
     <>
     {location.states ? <div className="center">
           <section className="detail_box">
             <span>
-              <h3>{location.states.id}</h3>
             </span>
             <div className="imgbox">
               <img
@@ -29,7 +41,9 @@ function Detail(props){
             <span>
               <h5>{location.states.content}</h5>
             </span>
-            {isLogined? <Link
+            {isLogined
+            ? (<>
+            <Link
               to={{
                 pathname: `/edit-data/${location.states.id}`,
                 states: {
@@ -41,7 +55,12 @@ function Detail(props){
               }}
             >
               Edit
-            </Link> : ""}
+            </Link> 
+            <button onClick={()=> deleteData(location.states.id, props)}>
+            Delete
+            </button>
+            </>)
+            : ""}
           </section>
         </div> 
         : <Redirect to="/"/>}

@@ -6,7 +6,4 @@ import { actionCreators } from "../store";
 function Index({login}) {
     return <div className="indexpage">Index Page</div>;
 }
-
-
-
 export default Index;
