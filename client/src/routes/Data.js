@@ -28,12 +28,11 @@ class Data extends React.Component {
             isLoading,
         } = this.state;
         if (data === undefined) {
-            return <div > Please Wait until data is reached! < /div>;
+            return <div> Please Wait until data is reached! </div>;
         }
-        return ( <
-            section className = "container" > {
+        return ( <section className = "container" > {
                 isLoading ? ( <
-                    div className = "loading" > Loading < /div>
+                    div className = "loading" > Loading </div>
                 ) : (
                     data.map(data => ( <
                         Portfolio key = { data.id }
@@ -45,15 +44,12 @@ class Data extends React.Component {
                         />
                     ))
                 )
-            } <
-            Link to = {
+            } <Link to = {
                 {
                     pathname: "/add-data",
                     //          states : {isLogined}
                 }
-            } > Add data < /Link> <
-            h1 > < /h1> <
-            /section>
+            } > Add data </Link> <h1></h1></section>
         );
     }
 }
